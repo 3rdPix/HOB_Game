@@ -1,14 +1,15 @@
 import typing
-from PyQt5 import QtCore, QtWidgets, QtGui, QtMultimedia
-from PyQt5.QtWidgets import QWidget
+from PyQt6 import QtCore, QtWidgets, QtGui, QtMultimedia
 
 
 class AnimatedButton(QtWidgets.QPushButton):
 
     def __init__(self, hover_se: str, font, click_se, **kwargs) -> None:
         super().__init__(**kwargs)
-        self.hover_se: QtMultimedia.QSound = QtMultimedia.QSound(hover_se)
-        self.click_se: QtMultimedia.QSound = QtMultimedia.QSound(click_se)
+        self.hover_se: QtMultimedia.QSoundEffect = QtMultimedia.QSoundEffect(self)
+        self.hover_se.setSource(QtCore.QUrl.fromLocalFile(hover_se))
+        self.click_se: QtMultimedia.QSoundEffect = QtMultimedia.QSoundEffect(self)
+        self.click_se.setSource(QtCore.QUrl.fromLocalFile(click_se))
         self.setFont(QtGui.QFont(font))
         self.setObjectName('HudButton')
         self.setMaximumWidth(int((self.parent().width() * 3) / 4))

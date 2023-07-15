@@ -1,6 +1,6 @@
 from ft.game_signals import FronEndSignals
-from PyQt5.QtWidgets import QGridLayout, QTextEdit, QLineEdit, QPushButton
-from PyQt5.QtCore import pyqtSignal
+from PyQt6.QtWidgets import QGridLayout, QTextEdit, QLineEdit, QPushButton
+from PyQt6.QtCore import pyqtSignal
 
 
 class GameWindow(FronEndSignals):

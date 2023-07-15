@@ -3,9 +3,9 @@ I'm sure you are familiar with the guy with a hoodie, staring at a black screen 
 Well, this game aims to make that child dream come true. You are given the mission to get access to Blysis, the central server of a futuristic world where everything is connected, every person, every action, every sale, every emotion, everything is registered inside this giant server called Blysis. As an underground person, the resistance requests your help to get access to the server. In this game you will have different levels of complexity while trying to achieve your mission. Not only will you have to hack the defenses of the most advanced, modern, and secured server in this world, but you will also need to be very cautelous with *how* you do it as it might get the attention of civilians, or the Blaegis, a special unit dedicated to the protection and preservation of Blysis. If they find out about you, they will start attacking you back, while repairing every defense of the server, making it even more difficult to enter.
 
 ## Developing stages
-[![Static Badge](https://img.shields.io/badge/Py-Qt5-brightgreen?labelColor=blue)](https://pypi.org/project/PyQt5/)
+[![Static Badge](https://img.shields.io/badge/Py-Qt6-brightgreen?labelColor=blue)](https://pypi.org/project/PyQt6/)
 [![Static Badge](https://img.shields.io/badge/PEP8-darkblue?logo=python&logoColor=white)](https://pep8.org/)
-![Static Badge](https://img.shields.io/badge/Qt-Documentation-darkblue?labelColor=brightgreen&link=https%3A%2F%2Fdoc.qt.io%2Fqtforpython-5%2Fcontents.html)
+[![Static Badge](https://img.shields.io/badge/Qt-Documentation-darkblue?labelColor=brightgreen)](https://doc.qt.io/qtforpython-6/)
 
 
 Since I am developing this as I explore and extend my knowledge around the PyQt framework and all its capabilities, the stages will be very segmented between build-up functionality of the app and gaming features. The flow of the game should follow the next diagram.

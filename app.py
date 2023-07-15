@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication
 from ft.game import GameWindow
 from ft.main_menu import MainMenuWindow
 from bk.game import GameLogic

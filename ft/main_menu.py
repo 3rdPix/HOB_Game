@@ -1,5 +1,5 @@
 from ft.custom_elements import AnimatedButton, TransitionLabel
-from PyQt5 import QtGui, QtCore, QtWidgets, QtMultimedia
+from PyQt6 import QtGui, QtCore, QtWidgets, QtMultimedia
 from ft.main_menu_signals import MainMenuSignals
 from math import cos, sin
 from os.path import join
@@ -56,13 +56,12 @@ class MainMenuWindow(MainMenuSignals):
         # window -> icon, flag and size
         self.setWindowIcon(QtGui.QIcon(join(
             *self.directory.get('window_icon'))))
-        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.resize(self.parameters.get('window_width'),
                     self.parameters.get('window_heigth'))
 
         # background
         self.gradient: QtGui.QLinearGradient = QtGui.QLinearGradient()
-        self.gradient.setCoordinateMode(QtGui.QGradient.ObjectBoundingMode)
         self.gradient.setColorAt(
             0, QtGui.QColor(*self.parameters.get('gradient_color_1')))
         self.gradient.setColorAt(
@@ -130,29 +129,27 @@ class MainMenuWindow(MainMenuSignals):
             self.setStyleSheet(qss.read())
 
         # music. Could be adapted to include more songs
-        self.song: QtMultimedia.QMediaContent = QtMultimedia.QMediaContent(
-            QtCore.QUrl.fromLocalFile(join(
-            *self.directory.get('background_song'))))
-        self.playlist: QtMultimedia.QMediaPlaylist = \
-            QtMultimedia.QMediaPlaylist()
-        self.playlist.addMedia(self.song)
-        self.playlist.setPlaybackMode(QtMultimedia.QMediaPlaylist.Loop)
+        self.audio_output: QtMultimedia.QAudioOutput = \
+            QtMultimedia.QAudioOutput()
+        self.audio_output.setVolume(0.15)
         self.music_player: QtMultimedia.QMediaPlayer = \
-            QtMultimedia.QMediaPlayer()
-        self.music_player.setPlaylist(self.playlist)
-        self.music_player.setVolume(15)
+            QtMultimedia.QMediaPlayer(self)
+        self.music_player.setAudioOutput(self.audio_output)
+        self.music_player.setLoops(-1)
+        self.music_player.setSource(QtCore.QUrl.fromLocalFile(join(
+            *self.directory.get('background_song'))))
 
         self.setFocus()
 
     def update_gradient(self) -> None:
         self.g_angle += 1
         deg_to_rad: float = 0.01745329
-        start = QtCore.QPointF(0.5 + 0.5 * cos(self.g_angle * deg_to_rad),
-                               0.5 + 0.5 * sin(self.g_angle * deg_to_rad))
-        f_stop = QtCore.QPointF(0.5 + 0.5 * \
-                                cos((self.g_angle + 180) * deg_to_rad),
-                                0.5 + 0.5 * \
-                                sin((self.g_angle + 180) * deg_to_rad))
+        start = QtCore.QPointF(
+            (0.5 + 0.5 * cos(self.g_angle * deg_to_rad)) * self.width(),
+            (0.5 + 0.5 * sin(self.g_angle * deg_to_rad)) * self.height())
+        f_stop = QtCore.QPointF(
+            (0.5 + 0.5 * cos((self.g_angle + 180) * deg_to_rad)) * self.width(),
+           (0.5 + 0.5 * sin((self.g_angle + 180) * deg_to_rad)) * self.height())
         self.gradient.setStart(start)
         self.gradient.setFinalStop(f_stop)
         self.update()
