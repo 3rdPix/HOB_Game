@@ -22,16 +22,13 @@ class MainMenuWindow(MainMenuSignals):
         self.directory: dict = directory
 
         self.init_UI()
-        self.connect_events()
 
     def show(self) -> None:
         self.gradient_timer.start()
-        self.music_player.play()
         return super().show()
     
     def hide(self) -> None:
         self.gradient_timer.stop()
-        self.music_player.pause()
         return super().hide()
         
     def paintEvent(self, paintEvent) -> None:
@@ -128,17 +125,6 @@ class MainMenuWindow(MainMenuSignals):
         with open(join(*self.directory.get('qss'))) as qss:
             self.setStyleSheet(qss.read())
 
-        # music. Could be adapted to include more songs
-        self.audio_output: QtMultimedia.QAudioOutput = \
-            QtMultimedia.QAudioOutput()
-        self.audio_output.setVolume(0.15)
-        self.music_player: QtMultimedia.QMediaPlayer = \
-            QtMultimedia.QMediaPlayer(self)
-        self.music_player.setAudioOutput(self.audio_output)
-        self.music_player.setLoops(-1)
-        self.music_player.setSource(QtCore.QUrl.fromLocalFile(join(
-            *self.directory.get('background_song'))))
-
         self.setFocus()
 
     def update_gradient(self) -> None:
@@ -155,19 +141,10 @@ class MainMenuWindow(MainMenuSignals):
         self.update()
 
     """
-    Events
-    """
-    def connect_events(self) -> None:
-        self.exit_button.clicked.connect(
-            exit)
-        
-    """
     Calls
     """
-    def full_screen(self) -> None:
-        if not self.isFullScreen():
+    def full_screen(self, fs: bool) -> None:
+        if self.isFullScreen() != fs:
             self.background_label.transition()
-            self.showFullScreen()
-        else:
-            self.background_label.transition()
-            self.showNormal()
+        if fs: self.showFullScreen()
+        else: self.showNormal()
