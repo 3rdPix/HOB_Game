@@ -4,6 +4,7 @@ from ft.game import GameWindow
 from ft.main_menu import MainMenuWindow
 from bk.instance_handler import InstanceHandler
 from ft.options_menu import OptionsMenuWindow
+from ft.new_game import NewGameWindow
 import json
 import ctypes
 
@@ -27,10 +28,11 @@ class Game(QApplication):
         self.main_menu_win: MainMenuWindow = MainMenuWindow(
             directory=front_dir.get('main_menu'))
         self.options_win: OptionsMenuWindow = OptionsMenuWindow(
-            directory=front_dir.get('options_menu')
-        )
+            directory=front_dir.get('options_menu'))
+        self.newgame_win: NewGameWindow = NewGameWindow(
+            directory=front_dir.get('new_game'))
+
         self.about_win = 0
-        self.newgame_win = 0
         self.loadgame_win = 0
         self.game_win = GameWindow()
 
@@ -72,12 +74,15 @@ class Game(QApplication):
         
         self.instance_handler.update_fullscreen_status.connect(
             self.main_menu_win.full_screen)
+        
+        self.instance_handler.hide_main_menu.connect(
+            self.main_menu_win.hide)
 
     def connect_options_instance(self) -> None:
         self.instance_handler.show_options_menu.connect(
             self.options_win.show)
         
-        self.options_win.fullscreen_update.connect(
+        self.options_win.fullscreen_checkbox.toggled.connect(
             self.instance_handler.fullscreen_update)
         
         self.instance_handler.update_instance_volume.connect(
@@ -88,12 +93,50 @@ class Game(QApplication):
         
         self.instance_handler.update_fullscreen_status.connect(
             self.options_win.fullscreen_checkbox.setChecked)
+        
+        self.options_win.return_button.clicked.connect(
+            self.instance_handler.return_from_options)
+        
+        self.instance_handler.show_options_menu.connect(
+            self.options_win.show)
+        
+        self.instance_handler.hide_options_menu.connect(
+            self.options_win.hide)
+        
+        self.options_win.music_enabled_button.toggled.connect(
+            self.instance_handler.enable_music)
+        
+        self.options_win.music_enabled_button.toggled.connect(
+            self.options_win.volume_slide.setEnabled)
+        
+        self.instance_handler.update_music_enabled.connect(
+            self.options_win.music_enabled_button.setChecked)
         pass
 
     def connect_about_instance(self) -> None:
         pass
 
     def connect_newgame_instance(self) -> None:
+        self.main_menu_win.newgame_button.clicked.connect(
+            self.newgame_win.show)
+        
+        self.main_menu_win.newgame_button.clicked.connect(
+            self.main_menu_win.hide)
+        
+        self.newgame_win.return_button.clicked.connect(
+            self.newgame_win.hide)
+        
+        self.newgame_win.return_button.clicked.connect(
+            self.main_menu_win.show)
+        
+        self.newgame_win.startgame_with_nick.connect(
+            self.instance_handler.start_from_new)
+        
+        self.instance_handler.starting_new_game.connect(
+            self.newgame_win.hide)
+        
+        self.instance_handler.starting_new_game.connect(
+            self.game_win.show)
         pass
 
     def connect_loadgame_instance(self) -> None:

@@ -7,6 +7,7 @@ import json
 class InstanceHandler(InstanceSignals):
 
     place: int = 0
+    player: str
 
     def __init__(self, directory: dict) -> None:
         super().__init__()
@@ -25,7 +26,7 @@ class InstanceHandler(InstanceSignals):
     def launch(self) -> None:
         self.update_settings()
         self.show_main_menu.emit()
-        self.music_player.play()
+        if self.game_settings.get('music_enabled'): self.music_player.play()
 
     def init_game_music(self) -> None:
         self.audio_output: QtMultimedia.QAudioOutput = \
@@ -41,6 +42,7 @@ class InstanceHandler(InstanceSignals):
     def update_settings(self) -> None:
         self.update_fullscreen_status.emit(self.game_settings.get('fullscreen'))
         self.update_instance_volume.emit(int(self.audio_output.volume() * 100))
+        self.update_music_enabled.emit(self.game_settings.get('music_enabled'))
 
 
     """
@@ -60,6 +62,7 @@ class InstanceHandler(InstanceSignals):
 
     def open_options_from_main(self) -> None:
         self.show_options_menu.emit()
+        self.hide_main_menu.emit()
         pass
 
     def open_about_from_main(self) -> None:
@@ -71,6 +74,25 @@ class InstanceHandler(InstanceSignals):
     def newgame_from_main(self) -> None:
         pass
 
-    def volume_change(self, vol: int) -> None:
+    def start_from_new(self, nickname: str) -> None:
+        # verify if nickname is valid?
+        self.player = nickname
+        self.place = 2
+        self.starting_new_game.emit()
+        pass
+
+    def volume_change(self, vol) -> None:
         self.audio_output.setVolume(vol / 100)
         self.game_settings['volume'] = vol / 100
+
+    def enable_music(self, enabled: bool) -> None:
+        if not enabled: self.music_player.stop()
+        else: self.music_player.play()
+        self.game_settings['music_enabled'] = enabled
+
+    def return_from_options(self) -> None:
+        match self.place:
+            case 0:
+                self.show_main_menu.emit()
+                self.hide_options_menu.emit()
+        pass

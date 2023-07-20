@@ -96,12 +96,14 @@ class MainMenuWindow(MainMenuSignals):
         self.loadgame_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
                                             text='load game', parent=self)
+        self.loadgame_button.setEnabled(False)
         self.options_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
                                             text='options', parent=self)
         self.about_button = AnimatedButton(button_hover_se, font_family,
                                            button_click_se,
                                            text='about', parent=self)
+        self.about_button.setEnabled(False)
         self.exit_button = AnimatedButton(button_hover_se, font_family,
                                           button_click_se,
                                             text='exit', parent=self)
