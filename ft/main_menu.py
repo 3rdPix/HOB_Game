@@ -1,4 +1,4 @@
-from ft.custom_elements import AnimatedButton, TransitionLabel
+from ft.Qt6Custom_widgets import AnimatedButton, TransitionLabel
 from PyQt6 import QtGui, QtCore, QtWidgets, QtMultimedia
 from ft.main_menu_signals import MainMenuSignals
 from math import cos, sin

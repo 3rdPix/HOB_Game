@@ -1,6 +1,8 @@
 from ft.game_signals import FronEndSignals
 from PyQt6.QtWidgets import QGridLayout, QTextEdit, QLineEdit, QPushButton
+from PyQt6 import QtWidgets
 from PyQt6.QtCore import pyqtSignal
+from ft.Qt6Custom_widgets import ConsoleScreen
 
 
 class GameWindow(FronEndSignals):
@@ -18,8 +20,7 @@ class GameWindow(FronEndSignals):
         self.setWindowTitle('Hackers of Blysis')
 
         # Console
-        self.gscreen = QTextEdit()
-        self.gscreen.setReadOnly(True)
+        self.gscreen: ConsoleScreen = ConsoleScreen(parent=self)
 
         # Input
         self.ginput = QLineEdit()
@@ -36,7 +37,7 @@ class GameWindow(FronEndSignals):
         self.ginput.setFocus()
 
     """
-    Perceivers
+    User-triggered events
     """
     def connect_events(self) -> None:
         self.gsend.clicked.connect(
@@ -51,7 +52,7 @@ class GameWindow(FronEndSignals):
         self.ginput.setFocus()
         
     """
-    Achievers
+    Back-end commands
     """
     def new_line(self, line: str) -> None:
         self.gscreen.append(line)

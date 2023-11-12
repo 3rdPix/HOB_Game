@@ -1,6 +1,6 @@
 from PyQt6 import QtWidgets, QtCore
 from ft.new_game_signals import NewGameSignals
-from ft.custom_elements import AnimatedButton
+from ft.Qt6Custom_widgets import AnimatedButton
 
 
 class NewGameWindow(NewGameSignals):

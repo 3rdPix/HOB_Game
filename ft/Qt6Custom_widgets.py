@@ -12,7 +12,6 @@ class AnimatedButton(QtWidgets.QPushButton):
         self.click_se.setSource(QtCore.QUrl.fromLocalFile(click_se))
         self.setFont(QtGui.QFont(font))
         self.setObjectName('HudButton')
-        self.setMaximumWidth(int((self.parent().width() * 3) / 4))
 
     def mousePressEvent(self, QMouseEvent) -> None:
         self.click_se.play()
@@ -22,7 +21,37 @@ class AnimatedButton(QtWidgets.QPushButton):
         self.hover_se.play()
         return super().enterEvent(Qevent)
     
+class QAnimatedButton(QtWidgets.QFrame):
+
+    def __init__(self, hover_sound: str, font:str, click_sound: str, 
+                 **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.__initMultimedia()
+        self.setHoverSound(hover_sound)
+        self.setClickSound(click_sound)
+        self.setFont(QtGui.QFont(font))
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+
+    def __initMultimedia(self) -> None:
+        self.hover_se: QtMultimedia.QSoundEffect = \
+            QtMultimedia.QSoundEffect(self)
+        self.click_se: QtMultimedia.QSoundEffect = \
+            QtMultimedia.QSoundEffect(self)
+    
+    def setHoverSound(self, hover_sound: str) -> None:
+        self.hover_se.setSource(QtCore.QUrl.fromLocalFile(hover_sound))
+    
+    def setClickSound(self, click_sound: str) -> None:
+        self.click_se.setSource(QtCore.QUrl.fromLocalFile(click_sound))
+
+
+    
 class TransitionLabel(QtWidgets.QFrame):
+    """
+    A widget with animated opacity transition between two images
+    """
 
     def __init__(self, im_1: QtGui.QPixmap, im_2: QtGui.QPixmap,
                  max_opacity: float, **kwargs) -> None:
@@ -92,3 +121,12 @@ class TransitionLabel(QtWidgets.QFrame):
         self._image1.resize(self.size())
         self._image2.resize(self.size())
         return super().resizeEvent(QResizeEvent)
+    
+
+class ConsoleScreen(QtWidgets.QPlainTextEdit):
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.setObjectName('ConsoleScreen')
+        self.setReadOnly(True)
+        
