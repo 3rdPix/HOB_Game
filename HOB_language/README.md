@@ -7,7 +7,7 @@ To fully experience the game, the player must feel like his actions mean somethi
 ## what it's not
 A programming language. It cannot compile, nor is related to any executing environment, nor has the basic tools most programming languages work with. This is purely to be written within the game and make things work inside an instance of the game.
 ## What it looks like?
-HOB is a game of actions, rather than writing files of code it is intented to be closer to a terminal, therefore, single-line commands will be the general case scenario. This does not mean variables can't be created, with their own values and even object instances. Let's take a look at these lines
+HOB is a game of actions, rather than writing files of code it is intented to be closer to a terminal, therefore, single-line commands will be the general case scenario. This does not mean variables can't be created, with their own values and even object instances. Now let's try to showcase what the language looks like, and to give an explanation as to why it should be this way. Let's take a look at these lines
 
 **Python**
 ```
@@ -25,6 +25,7 @@ As mentioned early, HOB is not a language but it can be understand as such to re
 It does exactly the same in *HOB*, first the `§` states the local machine, something that is meant to be ran locally. The `echo` token is to print something in the console. Followed by the *fire* word inside `" "`. The `¬` token asks if the previous command was succesfully executed. If it fails, executes the function `tick` from the object, this is achieved through the `**` indicator. And finally, ends the line with `#`, indicating that this is meant to be executed immediately.
 
 Another example is to try a function on the server
+
 **Bash**
 ```
 ssh username@server_ip_address
@@ -32,9 +33,10 @@ find / -name example.txt
 scp username@server_ip_address:/path/to/file /local/directory
 ```
 **HOB**
+
 If we have yet to be "in"
 ```
-§ server_object**fD -server_object**fS --example.txt -§*IP ##
+§ server_object**fD -server_object**fS --example.txt -§*IP ## @event
 ```
 Or if we gained access to the server beforehand
 ```
@@ -42,8 +44,21 @@ Or if we gained access to the server beforehand
 ```
 Here we are retrieving the file `example.txt` from the server. Of course, it is completely different from that example in **Bash**, the idea is to share the thought process behind it.
 
-In the first line we assume we have not hacked the server yet, and therefore we do not have access to administrator commands. We run the `fD` (file distribution) function from our generalized `server_object`, and declare as the arguments
+In the first line we assume we have not hacked the server yet, and therefore we do not have access to remote administrator commands. We run locally (`§`) the `fD` (file distribution) function from our generalized `server_object`, and declare as the arguments:
 1. The file, which we do not know where is it, so we have to find it through the `fS` (file search) function. To this function we give the argument `example.txt`.
-2. Our direction to which the file should be sent. This is done by `§*IP`. Accessing the variable (`*`) `IP` from local (`§`).
+2. Our direction to which the file should be sent. This is done by `§*IP`. Accessing the variable (`*`) by the name `IP` from local (`§`).
+Finally, the indicator `##` meaning that the command should not be ran immediately, but later whenever `event` is triggered. The `@` here means variable `event` is not yet defined and that the machine should wait to know what *event* refers to.
 
-The second line we are "in", and can run commands directly into the server's terminal.
+The second line we are "in", and can run commands directly into the server's terminal. We do a similar process but indicating that this is command should be ran in the server by `<<`. We call the `fD` file distribution function with arguments: path to the file (obtained through the same `fS` file search function) and the **ip** the file should be sent to. Note that this command is written in our local machine, so token `§` applies to local machine, not the server machine.
+
+## But.. why?
+Remember this game is aimed at a general public. So concepts do not need to be fully accurate neither to a developer experience, nor a hacking experience, but they should be as close as possible to the *hacker* portrayed in movies/series/videogames, etc. 
+
+The game starts with only our local machine, we have to gain access to the server, and once we are in, try to get as much as possible. Indicating what should be run locally and remotely is necessary, hence the `§` and `<<` are created. Also, many things could go wrong, so `¬` should be use all the time. We sometimes need to be quick, and writing lines is slow, so we can create a set of commands to be executed later, for instance, *"run all these commands as soon as I am connected to the server and immediately disconnect"*, here is where the `#` and `##` tokens come in. Etc.
+
+The idea behind this, is to make mixture of an exciting experience for the player, while also giving some "air" of what programming looks like. Therefore, accuracy in the operations is not mandatory. It does not need to make sense for a developer, it needs to make sense for the player.
+
+## End notes
+This was not meant to be a documentation, nor a complete explanation of how the HOB language is going to work. But rather notes on what should be achieved, and how it should be achieved.
+
+The game is still in early stages of development, so many changes are expected. Any ideas or suggestions should be posted in the [Issues](https://github.com/3rdPix/HOB_Game/issues)
