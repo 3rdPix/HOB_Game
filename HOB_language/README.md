@@ -36,11 +36,11 @@ scp username@server_ip_address:/path/to/file /local/directory
 
 If we have yet to be "in"
 ```
-§ server_object**fD -server_object**fS --example.txt -§*IP ## @event
+§ <<**fD -<<**fS --example.txt -§*IP ## @event
 ```
 Or if we gained access to the server beforehand
 ```
-<< fD -fS --example.txt -§*IP #
+<< fD -fS --example.txt -<<*IP #
 ```
 Here we are retrieving the file `example.txt` from the server. Of course, it is completely different from that example in **Bash**, the idea is to share the thought process behind it.
 
