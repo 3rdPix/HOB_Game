@@ -1,6 +1,6 @@
 # Documentation for the HOB language
 ## Comments
-Comments in HOB are placed after `&`.
+Comments in HOB are placed after `//`.
 ## Terminal of execution
 Commands can be executed in the local machine or in the server's terminal. To specify where it should be ran we must declare the token:
  - `§` for the local machine
@@ -25,9 +25,13 @@ The possible variable types are:
 This is how we could create the different types:
 
 **String**
-```§ name_of_variable>"some_string" #```
+```
+§ name_of_variable>"some_string" #
+```
 **Number**
-```§ name_of_variable>(12345,6789) #```
+```
+§ name_of_variable>(12345,6789) #
+```
 **General Object**
 
 This structure is a bit more complex, but let's say we want to refer to a local file *example.txt*. What we do is declare the variable to be a general object via `OOP`, this will execute the internal method for instancing an object (it will internally turn the argument given to a referable object). In this case, we want to create a variable of a file, so we need to use the `fG` (file get) function from the local machine.
@@ -92,21 +96,29 @@ Let's wrap all this and create an example code. This program should automate the
 
 **Before**
 ```
-& create the server connection event
+// create the server connection event
 § server_connected_event>§**Ev -<< -alter #
 
-& first send the file from our local machine to the server
+// first send the file from our local machine to the server
 § fD -fG --the_file.txt -<<*IP ## server_connected
 
-& create the new user event in the remote server
+// create the new user event in the remote server
 << new_user_event>§**Ev -number_of_users -increase ## server_connected
 
-& associate the distribution of the file for a new user
+// associate the distribution of the file for a new user
 << fD -fG --the_file.txt -last_user*IP ## new_user_event
 ```
 
 **After**
 ```
+// send the file to the server
+§ fD -fG --the_file.txt -<<*IP #
+
+// create the new user event
 << new_user_event>§**Ev -number_of_users -increase #
+
+// allocate the command in the event
 << fD -fG --the_file.txt -last_user*IP ## new_user_event
 ```
+
+As in any other languages, there are many ways in which we can achieve this, these two blocks are just an example of how to approach it.
