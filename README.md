@@ -3,9 +3,9 @@
 [![Static Badge](https://img.shields.io/github/issues-closed/3rdPix/HOB_Game.svg)](https://github.com/3rdPix/HOB_Game/issues)
 ![Static Badge](https://img.shields.io/badge/Documentation-incomplete-red)
 ![Static Badge](https://img.shields.io/badge/Project-HOB_developing-cyan?logo=github&link=https%3A%2F%2Fgithub.com%2Fusers%2F3rdPix%2Fprojects%2F3)
-![Static Badge](https://img.shields.io/badge/-Wear%20OS-4285F4?style=for-the-badge&logo=wear-os&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
-    A game about hacking with its own programming language
+> A game about hacking with its own programming language
 
 ## Background 🖥️
 I'm sure you are familiar with the guy with a hoodie, staring at a black screen with green letters, writing dozens of lines of code to say "We're In" after a couple seconds. How some television series portrait the hacking experience as something exciting, intense, and battle-like against the defenses of *whatever software or server* they are trying to gain access to.
