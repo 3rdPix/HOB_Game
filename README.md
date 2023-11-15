@@ -4,7 +4,7 @@
 ![documentation](https://img.shields.io/badge/Documentation-incomplete-red)
 [![project](https://img.shields.io/badge/Project-HOB_developing-cyan?logo=github&link=https%3A%2F%2Fgithub.com%2Fusers%2F3rdPix%2Fprojects%2F3)](https://github.com/users/3rdPix/projects/3)
 ![platform](https://img.shields.io/badge/Windows_platform-blue?logo=windows&logoColor=white&link=https%3A%2F%2Fgithub.com%2Fusers%2F3rdPix%2Fprojects%2F3)
-[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-lightgrey.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text)
 
 
 > A game about hacking with its own programming language
