@@ -1,4 +1,7 @@
 # HOB Language
+![Static Badge](https://img.shields.io/badge/Documentation-incomplete-red)
+![Static Badge](https://img.shields.io/badge/Version-0.0.1-purple)
+
 ## what is it?
 To fully experience the game, the player must feel like his actions mean something, and in a game about hacking; writing code is a must. However, we do not want the player to actually write a program, having to take care of all the details, errors and logic behind making a code work. Therefore, the idea of having a *programming language* exclusively for the game does not sound crazy. This way we achieve various things
  - No developers have an advantage by knowing how to code beforehand, nor it matters the language they have experience at.

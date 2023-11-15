@@ -1,4 +1,13 @@
-## Introduction 🖥️
+# Hackers of Blysis
+[![Static Badge](https://img.shields.io/github/issues/3rdPix/HOB_Game.svg)](https://github.com/3rdPix/HOB_Game/issues)
+[![Static Badge](https://img.shields.io/github/issues-closed/3rdPix/HOB_Game.svg)](https://github.com/3rdPix/HOB_Game/issues)
+![Static Badge](https://img.shields.io/badge/Documentation-incomplete-red)
+![Static Badge](https://img.shields.io/badge/Project-HOB_developing-cyan?logo=github&link=https%3A%2F%2Fgithub.com%2Fusers%2F3rdPix%2Fprojects%2F3)
+![Static Badge](https://img.shields.io/badge/-Wear%20OS-4285F4?style=for-the-badge&logo=wear-os&logoColor=white)
+
+    A game about hacking with its own programming language
+
+## Background 🖥️
 I'm sure you are familiar with the guy with a hoodie, staring at a black screen with green letters, writing dozens of lines of code to say "We're In" after a couple seconds. How some television series portrait the hacking experience as something exciting, intense, and battle-like against the defenses of *whatever software or server* they are trying to gain access to.
 Well, this game aims to make that child dream come true. You are given the mission to get access to Blysis, the central server of a futuristic world where everything is connected, every person, every action, every sale, every emotion, everything is registered inside this giant server called Blysis. As an underground person, the resistance requests your help to get access to the server. In this game you will have different levels of complexity while trying to achieve your mission. Not only will you have to hack the defenses of the most advanced, modern, and secured server in this world, but you will also need to be very cautelous with *how* you do it as it might get the attention of civilians, or the Blaegis, a special unit dedicated to the protection and preservation of Blysis. If they find out about you, they will start attacking you back, while repairing every defense of the server, making it even more difficult to enter.
 
