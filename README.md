@@ -3,7 +3,7 @@
 [![Static Badge](https://img.shields.io/github/issues-closed/3rdPix/HOB_Game.svg)](https://github.com/3rdPix/HOB_Game/issues)
 ![Static Badge](https://img.shields.io/badge/Documentation-incomplete-red)
 ![Static Badge](https://img.shields.io/badge/Project-HOB_developing-cyan?logo=github&link=https%3A%2F%2Fgithub.com%2Fusers%2F3rdPix%2Fprojects%2F3)
-![Static Badge](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Windows_platform-blue?logo=windows&logoColor=white&link=https%3A%2F%2Fgithub.com%2Fusers%2F3rdPix%2Fprojects%2F3)
 
 > A game about hacking with its own programming language
 
