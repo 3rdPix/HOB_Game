@@ -1,5 +1,5 @@
 # Variables in HobL
-    1. [Main page](README.md)
+ 1. [Main page](README.md)
 There are four types of variables in HobL. Each variable needs to be linked to a name in order to be referenced later. It is also possible to create ghost variables that hold a name to be referenced with no value nor type.
 
 Values are stored in the machine they are created and cannot be referenced between terminals before entering the parallel status with the desired terminal.

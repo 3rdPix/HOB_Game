@@ -1,5 +1,5 @@
 # Events
-    1. [Main page](README.md)
+ 1. [Main page](README.md)
 This is a full table of general event flags. Any of these flags must be provided as an argument to the `Ev` function.
  - `alter`: the most generic event recognizition, triggers whenever the variable changes its value, state, or any of its internal properties.
  - `increase`: applies to numbers and strings only. Triggered when number increases value or string increases length.

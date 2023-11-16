@@ -1,5 +1,5 @@
 # Documentation for the HOB language
-    1. [Main page](README.md)
+ 1. [Main page](README.md)
 
 ## Comments
 Comments in HOB are placed after `//`.

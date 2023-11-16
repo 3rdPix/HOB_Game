@@ -2,10 +2,10 @@
 ![Static Badge](https://img.shields.io/badge/Documentation-incomplete-red)
 ![Static Badge](https://img.shields.io/badge/Version-0.0.1-purple)
 
-    1. [Introduction to the language](Documentation.md)
-    2. [Variables](Variables.md)
-    3. [Functions](Functions.md)
-    4. [Events](Events.md)
+ 1. [Introduction to the language](Documentation.md)
+ 2. [Variables](Variables.md)
+ 3. [Functions](Functions.md)
+ 4. [Events](Events.md)
 
 
 ## What is it?
