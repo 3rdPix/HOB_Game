@@ -14,13 +14,13 @@ class AnimatedButton(QtWidgets.QPushButton):
         self.setObjectName('HudButton')
 
     def mousePressEvent(self, QMouseEvent) -> None:
-        self.click_se.play()
+        if self.isEnabled(): self.click_se.play()
         return super().mousePressEvent(QMouseEvent)
 
     def enterEvent(self, Qevent) -> None:
-        self.hover_se.play()
+        if self.isEnabled(): self.hover_se.play()
         return super().enterEvent(Qevent)
-    
+
 class QAnimatedButton(QtWidgets.QFrame):
 
     def __init__(self, hover_sound: str, font:str, click_sound: str, 
@@ -56,15 +56,18 @@ class TransitionLabel(QtWidgets.QFrame):
     def __init__(self, im_1: QtGui.QPixmap, im_2: QtGui.QPixmap,
                  max_opacity: float, **kwargs) -> None:
         super().__init__(**kwargs)
+        self.setMouseTracking(True)
 
         # Create both labels with images
         self._image1: QtWidgets.QLabel = QtWidgets.QLabel(self)
         self._image1.setPixmap(im_1)
         self._image1.setScaledContents(True)
+        self._image1.setMouseTracking(True)
 
         self._image2: QtWidgets.QLabel = QtWidgets.QLabel(self)
         self._image2.setPixmap(im_2)
         self._image2.setScaledContents(True)
+        self._image2.setMouseTracking(True)
 
         # Set up opacity effects
         self._opacity1: QtWidgets.QGraphicsOpacityEffect = \

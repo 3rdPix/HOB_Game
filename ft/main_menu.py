@@ -22,14 +22,6 @@ class MainMenuWindow(MainMenuSignals):
         self.directory: dict = directory
 
         self.init_UI()
-
-    def show(self) -> None:
-        self.gradient_timer.start()
-        return super().show()
-    
-    def hide(self) -> None:
-        self.gradient_timer.stop()
-        return super().hide()
         
     def paintEvent(self, paintEvent) -> None:
         painter: QtGui.QPainter = QtGui.QPainter(self)
@@ -44,6 +36,11 @@ class MainMenuWindow(MainMenuSignals):
         if event.text() == 'm': self.full_screen()
         elif event.text() == 't': self.background_label.transition()
         return super().keyPressEvent(event)
+    
+    def mouseMoveEvent(self, mouseEvent: QtGui.QMouseEvent) -> None:
+        x, y = mouseEvent.pos().x(), mouseEvent.pos().y()
+        self.update_gradient(x, y)
+        return super().mouseMoveEvent(mouseEvent)
 
     """
     Game screen
@@ -56,6 +53,7 @@ class MainMenuWindow(MainMenuSignals):
         self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.resize(self.parameters.get('window_width'),
                     self.parameters.get('window_heigth'))
+        self.setMouseTracking(True)
 
         # background
         self.gradient: QtGui.QLinearGradient = QtGui.QLinearGradient()
@@ -64,11 +62,6 @@ class MainMenuWindow(MainMenuSignals):
         self.gradient.setColorAt(
             1, QtGui.QColor(*self.parameters.get('gradient_color_2')))
         self.g_angle: int = 0
-        
-        self.gradient_timer: QtCore.QTimer = QtCore.QTimer(self)
-        self.gradient_timer.setInterval(
-            self.parameters.get('gradient_rotation_tick'))
-        self.gradient_timer.timeout.connect(self.update_gradient)
         
         self.normal_image: QtGui.QPixmap = QtGui.QPixmap(join(
             *self.directory.get('normal_background_image')))
@@ -129,18 +122,15 @@ class MainMenuWindow(MainMenuSignals):
 
         self.setFocus()
 
-    def update_gradient(self) -> None:
-        self.g_angle += 1
-        deg_to_rad: float = 0.01745329
-        start = QtCore.QPointF(
-            (0.5 + 0.5 * cos(self.g_angle * deg_to_rad)) * self.width(),
-            (0.5 + 0.5 * sin(self.g_angle * deg_to_rad)) * self.height())
-        f_stop = QtCore.QPointF(
-            (0.5 + 0.5 * cos((self.g_angle + 180) * deg_to_rad)) * self.width(),
-           (0.5 + 0.5 * sin((self.g_angle + 180) * deg_to_rad)) * self.height())
+    def update_gradient(self, x, y) -> None:
+        start = QtCore.QPointF(float(x), float(y))
+        f_stop = QtCore.QPointF(float(self.width() - x),
+                                float(self.height() - y))
         self.gradient.setStart(start)
         self.gradient.setFinalStop(f_stop)
         self.update()
+
+    
 
     """
     Calls
