@@ -48,8 +48,8 @@ class MainMenuWindow(MainMenuSignals):
     def init_UI(self) -> None:
 
         # window -> icon, flag and size
-        self.setWindowIcon(QtGui.QIcon(join(
-            *self.directory.get('window_icon'))))
+        self.setWindowIcon(QtGui.QIcon(
+                           join(*self.directory.get('window_icon'))))
         self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.resize(self.parameters.get('window_width'),
                     self.parameters.get('window_heigth'))
@@ -63,10 +63,10 @@ class MainMenuWindow(MainMenuSignals):
             1, QtGui.QColor(*self.parameters.get('gradient_color_2')))
         self.g_angle: int = 0
         
-        self.normal_image: QtGui.QPixmap = QtGui.QPixmap(join(
-            *self.directory.get('normal_background_image')))
-        self.fullscreen_image: QtGui.QPixmap = QtGui.QPixmap(join(
-            *self.directory.get('fullscreen_background_image')))
+        self.normal_image: QtGui.QPixmap = QtGui.QPixmap(
+            join(*self.directory.get('normal_background_image')))
+        self.fullscreen_image: QtGui.QPixmap = QtGui.QPixmap(
+            join(*self.directory.get('fullscreen_background_image')))
 
         self.background_label: TransitionLabel = TransitionLabel(
             self.normal_image, self.fullscreen_image,
@@ -76,8 +76,8 @@ class MainMenuWindow(MainMenuSignals):
         self.background_label.resize(self.size())
 
         # buttons
-        custom_font_id = QtGui.QFontDatabase.addApplicationFont(join(
-            *self.directory.get('menu_font')))
+        custom_font_id = QtGui.QFontDatabase.addApplicationFont(
+            join(*self.directory.get('menu_font')))
         font_family: QtGui.QFontDatabase = \
             QtGui.QFontDatabase.applicationFontFamilies(custom_font_id)[0]
         button_hover_se: str = join(*self.directory.get('button_hover_se'))
@@ -85,21 +85,21 @@ class MainMenuWindow(MainMenuSignals):
        
         self.newgame_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
-                                            text='start new game', parent=self)
+                                             text='start new game', parent=self)
         self.loadgame_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
-                                            text='load game', parent=self)
+                                             text='load game', parent=self)
         self.loadgame_button.setEnabled(False)
         self.options_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
-                                            text='options', parent=self)
+                                             text='options', parent=self)
         self.about_button = AnimatedButton(button_hover_se, font_family,
                                            button_click_se,
                                            text='about', parent=self)
         self.about_button.setEnabled(False)
         self.exit_button = AnimatedButton(button_hover_se, font_family,
                                           button_click_se,
-                                            text='exit', parent=self)
+                                          text='exit', parent=self)
         
         # buttons layout
         vertical_layout = QtWidgets.QVBoxLayout()

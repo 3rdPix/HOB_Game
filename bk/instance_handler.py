@@ -36,8 +36,8 @@ class InstanceHandler(InstanceSignals):
             QtMultimedia.QMediaPlayer(self)
         self.music_player.setAudioOutput(self.audio_output)
         self.music_player.setLoops(-1)
-        self.music_player.setSource(QtCore.QUrl.fromLocalFile(join(
-            *self.directory.get('background_song'))))
+        self.music_player.setSource(QtCore.QUrl.fromLocalFile(
+            join(*self.directory.get('background_song'))))
 
     def update_settings(self) -> None:
         self.update_fullscreen_status.emit(self.game_settings.get('fullscreen'))
