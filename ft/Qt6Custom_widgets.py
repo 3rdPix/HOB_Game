@@ -22,33 +22,7 @@ class AnimatedButton(QtWidgets.QPushButton):
     def enterEvent(self, Qevent) -> None:
         if self.isEnabled(): self.hover_se.play()
         return super().enterEvent(Qevent)
-
-class QAnimatedButton(QtWidgets.QFrame):
-
-    def __init__(self, hover_sound: str, font:str, click_sound: str, 
-                 **kwargs) -> None:
-        super().__init__(**kwargs)
-        self.__initMultimedia()
-        self.setHoverSound(hover_sound)
-        self.setClickSound(click_sound)
-        self.setFont(QtGui.QFont(font))
-
-    def __init__(self, **kwargs) -> None:
-        super().__init__(**kwargs)
-
-    def __initMultimedia(self) -> None:
-        self.hover_se: QtMultimedia.QSoundEffect = \
-            QtMultimedia.QSoundEffect(self)
-        self.click_se: QtMultimedia.QSoundEffect = \
-            QtMultimedia.QSoundEffect(self)
     
-    def setHoverSound(self, hover_sound: str) -> None:
-        self.hover_se.setSource(QtCore.QUrl.fromLocalFile(hover_sound))
-    
-    def setClickSound(self, click_sound: str) -> None:
-        self.click_se.setSource(QtCore.QUrl.fromLocalFile(click_sound))
-
-
     
 class TransitionLabel(QtWidgets.QFrame):
     """
@@ -134,4 +108,6 @@ class ConsoleScreen(QtWidgets.QPlainTextEdit):
         super().__init__(**kwargs)
         self.setObjectName('ConsoleScreen')
         self.setReadOnly(True)
-        
+    
+    def logToConsole(self, string: str) -> None:
+        self.appendPlainText(string)

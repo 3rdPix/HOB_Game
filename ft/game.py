@@ -1,13 +1,10 @@
 from ft.game_signals import FronEndSignals
 from PyQt6.QtWidgets import QGridLayout, QTextEdit, QLineEdit, QPushButton
 from PyQt6 import QtWidgets
-from PyQt6.QtCore import pyqtSignal
 from ft.Qt6Custom_widgets import ConsoleScreen
 
 
 class GameWindow(FronEndSignals):
-
-    sg_ginput = pyqtSignal(str)
 
     def __init__(self) -> None:
         super().__init__()
@@ -55,4 +52,4 @@ class GameWindow(FronEndSignals):
     Back-end commands
     """
     def new_line(self, line: str) -> None:
-        self.gscreen.append(line)
+        self.gscreen.logToConsole(line)

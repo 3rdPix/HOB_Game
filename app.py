@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QApplication
 from ft.game import GameWindow
 from ft.main_menu import MainMenuWindow
 from bk.instance_handler import InstanceHandler
+from bk.inGame import inGame
 from ft.options_menu import OptionsMenuWindow
 from ft.new_game import NewGameWindow
 import json
@@ -38,11 +39,10 @@ class Game(QApplication):
 
         # Create backend handlers
         self.instance_handler: InstanceHandler = InstanceHandler(
-            directory=back_dir.get('instance_handler')
-        )
-        self.game_logic = 0
+            directory=back_dir.get('instance_handler'))
+        self.game: inGame = inGame(parent=self)
 
-        # Connect APIs
+        # Connect pyqt signals
         self.connect_mainmenu_instance()
         self.connect_newgame_instance()
         self.connect_loadgame_instance()
@@ -143,4 +143,8 @@ class Game(QApplication):
         pass
 
     def connect_game_logic(self) -> None:
-        pass
+        self.game.logToConsole.connect(
+            self.game_win.new_line)
+        
+        self.game_win.sg_ginput.connect(
+            self.game.read_ginput)

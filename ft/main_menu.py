@@ -4,9 +4,12 @@ from ft.main_menu_signals import MainMenuSignals
 from math import cos, sin
 from os.path import join
 from json import load
+from QAliveWidgets import QAliveButton
 
 
 class MainMenuWindow(MainMenuSignals):
+
+    __isFullScreen: bool = False
 
     """
     Upper class methods
@@ -89,14 +92,12 @@ class MainMenuWindow(MainMenuSignals):
         self.loadgame_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
                                              text='load game', parent=self)
-        self.loadgame_button.setEnabled(False)
         self.options_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
                                              text='options', parent=self)
         self.about_button = AnimatedButton(button_hover_se, font_family,
                                            button_click_se,
                                            text='about', parent=self)
-        self.about_button.setEnabled(False)
         self.exit_button = AnimatedButton(button_hover_se, font_family,
                                           button_click_se,
                                           text='exit', parent=self)
@@ -135,8 +136,12 @@ class MainMenuWindow(MainMenuSignals):
     """
     Calls
     """
-    def full_screen(self, fs: bool) -> None:
-        if self.isFullScreen() != fs:
-            self.background_label.transition()
-        if fs: self.showFullScreen()
-        else: self.showNormal()
+    def full_screen(self) -> None:
+        # if self.isFullScreen() != fs:
+        #     self.background_label.transition()
+        if not self.__isFullScreen:
+            self.showFullScreen()
+            self.__isFullScreen = True
+        else: 
+            self.showNormal()
+            self.__isFullScreen = False
