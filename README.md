@@ -1,41 +1,78 @@
-# Hackers of Blysis
-[![open issues](https://img.shields.io/github/issues/3rdPix/HOB_Game.svg)](https://github.com/3rdPix/HOB_Game/issues)
-[![closed issues](https://img.shields.io/github/issues-closed/3rdPix/HOB_Game.svg)](https://github.com/3rdPix/HOB_Game/issues)
-![documentation](https://img.shields.io/badge/Documentation-incomplete-red)
-[![project](https://img.shields.io/badge/Project-HOB_developing-cyan?logo=github&link=https%3A%2F%2Fgithub.com%2Fusers%2F3rdPix%2Fprojects%2F3)](https://github.com/users/3rdPix/projects/3)
-![platform](https://img.shields.io/badge/Windows_platform-blue?logo=windows&logoColor=white&link=https%3A%2F%2Fgithub.com%2Fusers%2F3rdPix%2Fprojects%2F3)
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-lightgrey.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text)
+# HobL Documentation
+![Static Badge](https://img.shields.io/badge/Documentation-incomplete-red)
+![Static Badge](https://img.shields.io/badge/Version-0.0.4-purple)
 
+## What is it?
 
-> A game about hacking with its own programming language
+Hackers of Blysis' programming language (HobL) is a script-like command-driven syntax type that is used to interact with the game and solve the problems that it proposes. It is the core mechanic of the game that sustains the hacking experience by providing the player an environment where he can experiment with different code attacks without the need to worry about the troubles a real programming language would arise. This is the language that needs to be used to gain access to Blysis, and it is the language in which the server works.
 
-## Background 🖥️
-I'm sure you are familiar with the guy with a hoodie, staring at a black screen with green letters, writing dozens of lines of code to say "We're In" after a couple seconds. How some television series portrait the hacking experience as something exciting, intense, and battle-like against the defenses of *whatever software or server* they are trying to gain access to.
-Well, this game aims to make that child dream come true. You are given the mission to get access to Blysis, the central server of a futuristic world where everything is connected, every person, every action, every sale, every emotion, everything is registered inside this giant server called Blysis. As an underground person, the resistance requests your help to get access to the server. In this game you will have different levels of complexity while trying to achieve your mission. Not only will you have to hack the defenses of the most advanced, modern, and secured server in this world, but you will also need to be very cautelous with *how* you do it as it might get the attention of civilians, or the Blaegis, a special unit dedicated to the protection and preservation of Blysis. If they find out about you, they will start attacking you back, while repairing every defense of the server, making it even more difficult to enter.
+HobL is the approach taken to obtain different advantages regarding level design and learning curve of the hacking experience in HOB, which include:
 
-## Developing stages
-[![Static Badge](https://img.shields.io/badge/Py-Qt6-brightgreen?labelColor=blue)](https://pypi.org/project/PyQt6/)
-[![Static Badge](https://img.shields.io/badge/PEP8-darkblue?logo=python&logoColor=white)](https://pep8.org/)
-[![Static Badge](https://img.shields.io/badge/Qt-Documentation-darkblue?labelColor=brightgreen)](https://doc.qt.io/qtforpython-6/)
+ - By providing a specialized unique language, experienced coders have no significant advantage over other players when solving the puzzles the game offers.
+ - Creates a learning curve that, although may be steep at the beginning, the later rewards the player gets by researching design patterns and better techniques to approach a determined puzzle make up for that slow start.
+ - Weird looking lines with a bunch of unusual characters are embedded in popular culture as to be hacker-related and provides a more exciting experience.
 
+HobL aims to be in the middle of a proper programming language and the cinema/tv-series portrayed image of a hacker code. Thus, it has to look crazy for the unexperienced eye, but rather readable for a player.
 
-Since I am developing this as I explore and extend my knowledge around the PyQt framework and all its capabilities, the stages will be very segmented between build-up functionality of the app and gaming features. The flow of the game should follow the next diagram.
+Just like in many other games (chess, to mention one), memorizing structures and dedicating a bit of time to learn the mechanic is rewarded with better performing. Despite this, HobL is not obligatory, as the game offers a block game mode where you can do all of HobL without necessarily writing code but using the in-game user interface instead.
 
-<div align="center">
-    <img src="other/window_flow.png" alt="Window Flow Chart" />
-    <p><em>In this chart, purple bidirectional arrows mean a strict connection, i.e. if window <b>A</b> is accessed through window <b>B</b>, it can only go back to window <b>B</b> and not any of the other windows for which <b>A</b> has connections.</em></p>
-</div>
-As per usual, this chart might be modified if new windows or panels are added to complete features of the game. Note that the <i>Game Window</i> has sub windows and panels, but those are related to the gameplay itself, not the app management. Also, for any sub window of this <i>Game Window</i>, all connections from its parent are preserved.
-The stages of development follow the path a user would take in the app; first the main window, options window, about panel, then new game, game window, and load game. In all of these, a minimum amount of frontend is needed to start adding features and functionality to the game. However, I do not intend to fulfill the minimum only. As mentioned earlier, this is a project to learn the full extent of the Qt framework, therefore, a lot of frontend will be created before moving to the next part.
+## What it's not?
 
+A programming language. It cannot compile, nor is related to any executing environment, nor has the basic tools most programming languages work with. This is purely to be written within the game and make things work inside an instance of the game.
 
-<img align="left" width="40" height="40" src="https://pypi.org/static/images/logo-small.2a411bc6.svg" alt="Modularization concept">
+## What it looks like?
 
-## Modularization and directory
+As mentioned, HobL is a script-like command-driven language that is intented to work as a terminal, it is structured in a way that most of the funcionalities that it offers can be written in a single line. However, more complex methods and flows can be written in multiple independent lines; the way HobL handles this is using time of execution options and events.
 
-The app is extensively modularized. This means that parameters, settings, style definitions, and paths are separated from the constructor module. This is a non-extensive list of how the directory works.
-* <img align="left" width="20" height="20" src="other/json_icon.png" alt="JSON file"> `paths.json`: As its name suggests, contains the relative paths of all the source files in the directory, including images, sounds, style definitions, and parameters of different windows.
-* <img align="left" width="20" height="20" src="other/css.png" alt="JSON file"> `*.qss`: Files with custom style sheets applied to QWidgets. These can found in the frontend folder.
-* <img align="left" width="20" height="20" src="other/json_icon.png" alt="JSON file"> (window)`parameters.json`: Files with different window parameters. These are related to the visual representation of the windows. Can also be found in the frontend folder.
+Let's take at what the language looks like comparing these two blocks of code:
 
-Additionaly, module files are also segmented into different needs. For instance, `main_menu_signals.py` contains the `MainMenuSignals` class which is inherited by `MainMenuWindow` found in `main_menu.py`. This is to organize classes according to its contents and keep files below a certain number of lines, maintaining its readibility.
+**Python**
+```
+try:
+    print('fire')
+except error:
+    a_certain_object.tick()
+```
+
+**HobL**
+```
+§ echo "fire" ¬ a_certain_object**tick #
+```
+
+These two blocks have the same behavior, although they differ in some requirements to be executed; they follow the same principles and handle things in the same way. To be specific, the code tries to print *"fire"* into the console and if it fails (for any reason) it calls the method `tick` from the object `a_certain_object`.
+
+| **Python** | **HobL** |
+|:-------:|:------:|
+| `print` | `echo` |
+| `try/except` | `¬` |
+| `a_certain_object.tick()` | `a_certain_object**tick` |
+
+Two special tokens appear in the HobL block, these are `§` used to specify the terminal in which the command should be executed, and `#` that determines when to execute the command. More information about this can be found in the detailed description in [General Rules](Documentation.md) document.
+
+Here's another example that retrieves a file from the server, compared to the **Bash** environment:
+
+**Bash**
+```
+ssh username@server_ip_address
+find / -name example.txt
+scp username@server_ip_address:/path/to/example.txt /local/directory
+```
+
+**HobL**
+```
+<< fD -fS --example.txt -<<*IP #
+```
+
+In these two blocks we are sending a file from the server to our local machine. The only comparable methods here are the `find` from **Bash** and `fS` from **HobL**, both of them search for a file in the machine (the server machine in this case). It is important to mention that in the **HobL** block we assume we have already hacked the server and are in parallel status.
+
+These are some special characters and tokens used in **HobL**: `§`, `<<`, `¬`, `#`, `"`, `*`, `()`, `-`, `>`, `@`.
+
+## But.. why?
+
+**HobL** allows me to create an experience that portraits the visuals of the code from cinema and tv series while also being somewhat close to what real coding feels like. This is a game, so concepts do not need to be accurate to a developer, they need to be appealing to the player.
+
+Every feature in the language has a reason not just from a development point of view, but from a concept logic point of view too. For example I can mention that time of execution is a thing because sometimes when hacking you a series of commands to be ran as fast as possible and as soon as an event occurs (like when a user plugs a USB-stick a lot commands are run).
+
+## End note
+
+The game is still in early stages of development, so many changes are expected. Any ideas or suggestions should be posted in the [Issues](https://github.com/3rdPix/HOB_Game/issues). The language itself is still in a definition stage, which means some relationships might be deprecated.
