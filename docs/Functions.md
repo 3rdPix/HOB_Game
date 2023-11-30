@@ -1,5 +1,5 @@
 # Functions
-> [Main page](Documentation.md)
+> [Main page](README.md)
 Functions are callable methods associated to a terminal, whether it is the local machine or the remote server. Most methods need arguments of a certain type. Arguments can be specified after calling the function with `-` token. All arguments are positional. Token functions do not need the `-` indicator. For instance to print something into the console function `echo` should be used.
 
 ```

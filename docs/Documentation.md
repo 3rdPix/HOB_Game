@@ -1,8 +1,5 @@
 # Documentation for the HOB language
- 1. [Variables](Variables.md)
- 2. [Functions](Functions.md)
- 3. [Events](Events.md)
- 4. [General Objects](OOP.md)
+> [Main](README.md)
 
 ## Comments
 Comments in HOB are placed after `//`.
