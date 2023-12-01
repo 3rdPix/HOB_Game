@@ -50,7 +50,7 @@ For every feature there is a minimum amount of frontend implementation that need
 
 ### HobL
 ![Static Badge](https://img.shields.io/badge/Documentation-incomplete-red)
-![Static Badge](https://img.shields.io/badge/Version-0.0.1-purple)
+![Static Badge](https://img.shields.io/badge/Version-0.1.0-purple)
 
 As mentioned, this game implements an environment for non-coders and developers to play a game that portraits the hacking experience seen in television and cinema. It does so, by creating scenarios that the player has to overcome creating functions and implementing them in [HobL](https://3rdpix.github.io/HOB_Game/). This is an invented scripting-like programming language which intends to be visually appealing (disclaimer: this is definitely not true from a developer's perspecetive, furthermore, HobL tries to be as far as possible from "clean, neat code") while being not hard to understand and learn so that new players can join the game without a very steep learning curve.
 
