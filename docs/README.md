@@ -1,6 +1,6 @@
 # HobL Documentation
 ![Static Badge](https://img.shields.io/badge/Documentation-incomplete-red)
-![Static Badge](https://img.shields.io/badge/Version-0.0.4-purple)
+![Static Badge](https://img.shields.io/badge/Version-0.1.0-purple)
 
  1. [Documentation](Documentation.md)
  2. [Variables](Variables.md)

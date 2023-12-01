@@ -1,5 +1,6 @@
 # Events
 > [Main page](README.md)
+
 ## What events are
 
 They refer to the occurrence of an action, that can be initialized either by the user, the terminal, the environment, a function, another event, etc. Examples of events are the mouse movement, a key press, a change in the internal property of an object, etc. 
