@@ -1,6 +1,9 @@
 import abc
 from _collections_abc import _check_methods
 import re
+from typing import Protocol
+import sys
+from PyQt6.QtCore import pyqtSignal
 
 
 class NonValidHobLName(Exception):
@@ -49,7 +52,7 @@ class NumberLike(abc.ABC):
         if cls is NumberLike:
             return _check_methods(subclass, '__numstr__')
         return NotImplemented
-    
+
 
 class HobLNumber(NumberLike):
     def __init__(self, value):
@@ -88,26 +91,136 @@ def expect_event(ghostVar: HobLGhostAny) -> HobLGhostEvent:
     del ghostVar
     return new
 
+# Maybe pass the values as properties and use signals inside setter?
+# Will do!! But only for OOP
+class HobLVar(abc.ABC):
 
-class HobLNumberVariable:
+    """General description of any variable"""
+
+    alterEvent:     pyqtSignal = pyqtSignal(name='alterEvent')
+    deletionEvent:  pyqtSignal = pyqtSignal(name='deletionEvent')
+    syncrodEvent:   pyqtSignal = pyqtSignal(name='syncrodEvent')
+    dsynrcodEvent:  pyqtSignal = pyqtSignal(name='dsyncrodEvent')
+
+    def syncro(self) -> None: self.syncrodEvent.emit()
+    def dsyncrod(self) -> None: self.dsynrcodEvent.emit()
+
+
+class HobLNumberVariableStructure(HobLVar):
+
+    increaseEvent: pyqtSignal = pyqtSignal(name='increaseEvent')
+    decreaseEvent: pyqtSignal = pyqtSignal(name='decreaseEvent')
+
+
+class HobLNumberVariable(HobLNumberVariableStructure):
 
     def __init__(self, name: HobLVariableName[str],
                  value: HobLNumber[int|float|str]) -> None:
+        super().__init__()
         self.name = name
         self.value = value
 
     def __modify(self, new_value: HobLNumber[int|float|str]) -> None:
         """This method should only be called from OOP of this variable"""
+        if not new_value != self.value: return
+        self.alterEvent.emit()
+        if new_value > self.value: self.increaseEvent.emit()
+        elif new_value < self.value: self.decreaseEvent.emit()
         self.value = new_value
 
 
-class HobLStringVariable:
+class HobLNumberOOP(HobLNumberVariableStructure):
+
+    def __init__(self, origin: HobLNumberVariable,
+                 name: HobLVariableName[str]) -> None:
+        self.origin = origin
+        self.name = name
+        self.setHobLProperties()
+
+    def setHobLProperties(self) -> None:
+        self._value = self.origin.value
+        self.size = sys.getsizeof(self)
+
+    def get_value(self) -> HobLNumber: return self._value
+    def set_value(self, new_value: HobLNumber) -> None:
+        if not new_value != self.value: return
+        self.alterEvent.emit()
+        if new_value > self.value: self.increaseEvent.emit()
+        elif new_value < self.value: self.decreaseEvent.emit()
+        self._value = new_value
+
+    value = property(get_value, set_value)
+
+    def increase(self) -> None: self.value += 1
+    def decrease(self) -> None: self.value -= 1
+    def square(self) -> None: self.value *= self.value
+    def half(self) -> None: self.value /= 2
+
+    def do(self) -> None:
+        raise NotImplementedError
+
+
+class HobLStringVariableStructure(HobLVar):
+
+    verboseEvent:   pyqtSignal = pyqtSignal(name='verboseEvent')
+    dverboseEvent:  pyqtSignal = pyqtSignal(name='dverboseEvent')
+    weightedEvent:  pyqtSignal = pyqtSignal(name='weightedEvent')
+    dweightedEvent: pyqtSignal = pyqtSignal(name='dweightedEvent')
+    
+
+class HobLStringVariable(HobLStringVariableStructure):
 
     def __init__(self, name: HobLVariableName[str], value: str) -> None:
+        super().__init__()
         self.name = name
         self.value = value
+        self.length = len(self.value)
+        self.weight = sum((ord(char) for char in self.value))
 
     def __modify(self, new_value: str) -> None:
         """This method should only be called from OOP of this variable"""
+        if new_value == self.value: return
+
+        if len(new_value) > self.length: self.verboseEvent.emit()
+        elif len(new_value) < self.length: self.dverboseEvent.emit()
+        
+        if sum((ord(char) for char in new_value)) > self.weight:
+            self.weightedEvent.emit()
+        elif sum((ord(char) for char in new_value)) < self.weight:
+            self.dweightedEvent.emit()
+        
         self.value = new_value
+        self.length = len(new_value)
+        self.weight = sum((ord(char) for char in new_value))
+
+
+class HobLStringOOP(HobLStringVariableStructure):
+
+    def __init__(self, origin: HobLStringVariable,
+                 name: HobLVariableName[str]) -> None:
+        super().__init__()
+        self.origin = origin
+        self.name = name
+        self.setHobLProperties()
+
+    def setHobLProperties(self) -> None:
+        self._value = self.origin.value
+        self.size = sys.getsizeof(self)
+        self._length = len(self.value)
+        self._weight = sum((ord(char) for char in self.value))
+
+    def low(self) -> None: self.value = self.value.lower()
+    def upr(self) -> None: self.value = self.value.upper()
+
+    def do(self) -> None:
+        raise NotImplementedError
+        
+
+class HobLFixedVariable(Protocol):
+
+    name: HobLVariableName
+    value: HobLNumber|str
+
+    def __modify(self, new_value) -> None: ...
+
 

@@ -1,6 +1,7 @@
 import abc
 from _collections_abc import _check_methods
-import re
+
+
 FLAGS: tuple = ('alter', 'increase', 'decrease', 'deletion', 'equals',
                 'dequals', 'syncrod', 'dsyncrod', 'connected', 'dconnected',
                 'verbose', 'dverbose', 'weighted', 'dweighted')
@@ -30,7 +31,7 @@ class FlagLike(abc.ABC):
 class HobLEventFlag(FlagLike):
 
     def __init__(self, flag) -> None:
-        if re.match(r'[a-z]+', flag): self._flag = flag
+        if flag in FLAGS: self._flag = flag
         else:
             raise NonValidHobLEventFlag(
                 f"The indicator {flag} is not a valid HobL event flag")
