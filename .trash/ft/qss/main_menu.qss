@@ -1,0 +1,40 @@
+QPushButton#HudButton {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1,
+    stop:0 rgb(11, 102, 106),
+    stop:1 rgb(0, 0, 139));
+    color: white;
+    font-size: 20px;
+    border-color: white;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 8px;
+    padding-top: 4px;
+    padding-bottom: 5px;
+    /* when using custom font, needs to be setted from code */
+    /*font-family: 'Phantomsans';*/
+
+}
+QPushButton#HudButton:hover {
+    color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1,
+    stop:0 rgb(11, 102, 106),
+    stop:1 rgb(151, 254, 237));
+    background-color: white;
+    border-color: rgb(7, 25, 82);
+}
+QPushButton#HudButton:pressed {
+    background-color: rgb(48, 25, 52);
+    border-color: rgb(255, 105, 180);
+    color: rgb(192, 192, 192);
+}
+
+
+/* Black: (0, 0, 0)
+Dark blue: (0, 0, 139)
+Dark green: (0, 100, 0)
+Dark purple: (48, 25, 52)
+Pink: (255, 105, 180)
+Blue: (0, 191, 255)
+Green: (50, 205, 50)
+Purple: (128, 0, 128)
+Silver: (192, 192, 192)
+Gold: (255, 215, 0) */

@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net" modified="2023-11-15T13:41:47.226Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0" etag="paKWgflzvjJmwiSAIL35" version="21.7.2" type="device">
+  <diagram name="Page-1" id="b520641d-4fe3-3701-9064-5fc419738815">
+    <mxGraphModel dx="1117" dy="518" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TPPopqeAFQhzRozB04CO-2" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Min. Win.&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#97D077;" vertex="1" parent="1">
+          <mxGeometry x="260" y="240" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-3" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Minimum frontend implementation in the form of a general widget that allows for interaction with feature functionality&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="TPPopqeAFQhzRozB04CO-2">
+          <mxGeometry y="30" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-6" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Definitions&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;shadow=0;fillColor=#97D077;" vertex="1" parent="1">
+          <mxGeometry x="80" y="240" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-7" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;Clear set of definitions of what feature is being implemented, explicitly declaring what it should do, how it should react and interact with both the user and the rest of the program&lt;/font&gt;" style="text;strokeColor=none;fillColor=#660033;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="TPPopqeAFQhzRozB04CO-6">
+          <mxGeometry y="30" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-10" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Implementation&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#97D077;" vertex="1" parent="1">
+          <mxGeometry x="440" y="240" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-11" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;The code that holds the behavior described in the definitions.&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="TPPopqeAFQhzRozB04CO-10">
+          <mxGeometry y="30" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-12" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Test&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#97D077;" vertex="1" parent="1">
+          <mxGeometry x="620" y="240" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-13" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Create set of tests to verify expected behavior and border cases if applicable.&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="TPPopqeAFQhzRozB04CO-12">
+          <mxGeometry y="30" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-14" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Docs&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#97D077;" vertex="1" parent="1">
+          <mxGeometry x="800" y="240" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-15" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Update documentation related to feature.&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="TPPopqeAFQhzRozB04CO-14">
+          <mxGeometry y="30" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-16" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.442;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="TPPopqeAFQhzRozB04CO-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="350" as="sourcePoint" />
+            <mxPoint x="260" y="323" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-17" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.442;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="320" as="sourcePoint" />
+            <mxPoint x="440" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-18" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.442;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="320" as="sourcePoint" />
+            <mxPoint x="620" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TPPopqeAFQhzRozB04CO-19" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.442;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="320" as="sourcePoint" />
+            <mxPoint x="800" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

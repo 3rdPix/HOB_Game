@@ -1,0 +1,20 @@
+// number like
+§ variable1>(0) #
+§ variable2>(1) #
+§ variable3>(-1) #
+§ variable4>(10000) #
+§ variable5>(-10000) #
+§ variable6>(3,1415) #
+§ variable7>(-3,1415) #
+§ variable8>(10000,001) #
+§ variable9>(-10000,001) #
+§ variable10>(10000,0000001) #
+§ variable11>(-10000,0000001) #
+
+// string like
+§ variable12>"" #
+§ variable13>"abcd" #
+§ variable14>"☺☻♥♦♣♠•◘○" #
+§ variable15>"variable15>" #
+§ variable16>"📚🎯🍏👨🏻‍💻" #
+§ variable17>"全球总决赛" #
