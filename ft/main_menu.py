@@ -1,15 +1,14 @@
-from ft.Qt6Custom_widgets import AnimatedButton, TransitionLabel
+import typing
+from .Qt6Custom_widgets import AnimatedButton, TransitionLabel
 from PyQt6 import QtGui, QtCore, QtWidgets, QtMultimedia
 from ft.main_menu_signals import MainMenuSignals
 from math import cos, sin
 from os.path import join
 from json import load
-from QAliveWidgets import QAliveButton
+from random import randint as rint
 
 
 class MainMenuWindow(MainMenuSignals):
-
-    __isFullScreen: bool = False
 
     """
     Upper class methods
@@ -25,6 +24,14 @@ class MainMenuWindow(MainMenuSignals):
         self.directory: dict = directory
 
         self.init_UI()
+
+    def showEvent(self, event) -> None:
+        self.gradient_timer.start()
+        return super().showEvent(event)
+    
+    def hide(self) -> None:
+        self.gradient_timer.stop()
+        return super().hide()
         
     def paintEvent(self, paintEvent) -> None:
         painter: QtGui.QPainter = QtGui.QPainter(self)
@@ -39,11 +46,6 @@ class MainMenuWindow(MainMenuSignals):
         if event.text() == 'm': self.full_screen()
         elif event.text() == 't': self.background_label.transition()
         return super().keyPressEvent(event)
-    
-    def mouseMoveEvent(self, mouseEvent: QtGui.QMouseEvent) -> None:
-        x, y = mouseEvent.pos().x(), mouseEvent.pos().y()
-        self.update_gradient(x, y)
-        return super().mouseMoveEvent(mouseEvent)
 
     """
     Game screen
@@ -51,12 +53,11 @@ class MainMenuWindow(MainMenuSignals):
     def init_UI(self) -> None:
 
         # window -> icon, flag and size
-        self.setWindowIcon(QtGui.QIcon(
-                           join(*self.directory.get('window_icon'))))
+        self.setWindowIcon(QtGui.QIcon(join(
+            *self.directory.get('window_icon'))))
         self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.resize(self.parameters.get('window_width'),
                     self.parameters.get('window_heigth'))
-        self.setMouseTracking(True)
 
         # background
         self.gradient: QtGui.QLinearGradient = QtGui.QLinearGradient()
@@ -65,11 +66,21 @@ class MainMenuWindow(MainMenuSignals):
         self.gradient.setColorAt(
             1, QtGui.QColor(*self.parameters.get('gradient_color_2')))
         self.g_angle: int = 0
+        self.g_angle_step = self.parameters.get('rotation_step')
+        self.firstx = 0.5
+        self.firsty = 0.5
+
+        self.gradient_timer: QtCore.QTimer = QtCore.QTimer(self)
+        self.gradient_timer.setInterval(
+            self.parameters.get('gradient_rotation_tick'))
+        self.gradient_timer.timeout.connect(self.update_gradient)
         
-        self.normal_image: QtGui.QPixmap = QtGui.QPixmap(
-            join(*self.directory.get('normal_background_image')))
-        self.fullscreen_image: QtGui.QPixmap = QtGui.QPixmap(
-            join(*self.directory.get('fullscreen_background_image')))
+
+
+        self.normal_image: QtGui.QPixmap = QtGui.QPixmap(join(
+            *self.directory.get('normal_background_image')))
+        self.fullscreen_image: QtGui.QPixmap = QtGui.QPixmap(join(
+            *self.directory.get('fullscreen_background_image')))
 
         self.background_label: TransitionLabel = TransitionLabel(
             self.normal_image, self.fullscreen_image,
@@ -77,10 +88,11 @@ class MainMenuWindow(MainMenuSignals):
         self.background_label.set_duration(
             self.parameters.get('background_transition_duration'))
         self.background_label.resize(self.size())
+        self.background_label.transition()
 
         # buttons
-        custom_font_id = QtGui.QFontDatabase.addApplicationFont(
-            join(*self.directory.get('menu_font')))
+        custom_font_id = QtGui.QFontDatabase.addApplicationFont(join(
+            *self.directory.get('menu_font')))
         font_family: QtGui.QFontDatabase = \
             QtGui.QFontDatabase.applicationFontFamilies(custom_font_id)[0]
         button_hover_se: str = join(*self.directory.get('button_hover_se'))
@@ -88,20 +100,27 @@ class MainMenuWindow(MainMenuSignals):
        
         self.newgame_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
-                                             text='start new game', parent=self)
+                                            text='start new game', parent=self)
+        self.newgame_button.setMaximumSize(350, 80)
         self.loadgame_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
-                                             text='load game', parent=self)
+                                            text='load game', parent=self)
+        self.loadgame_button.setMaximumSize(350, 80)
+        self.loadgame_button.setEnabled(False)
         self.options_button = AnimatedButton(button_hover_se, font_family,
                                              button_click_se,
-                                             text='options', parent=self)
+                                            text='options', parent=self)
+        self.options_button.setMaximumSize(350, 80)
         self.about_button = AnimatedButton(button_hover_se, font_family,
                                            button_click_se,
                                            text='about', parent=self)
+        self.about_button.setMaximumSize(350, 80)
+        self.about_button.setEnabled(False)
         self.exit_button = AnimatedButton(button_hover_se, font_family,
                                           button_click_se,
-                                          text='exit', parent=self)
-        
+                                            text='exit', parent=self)
+        self.exit_button.setMaximumSize(350, 80)
+
         # buttons layout
         vertical_layout = QtWidgets.QVBoxLayout()
         vertical_layout.addStretch()
@@ -123,25 +142,15 @@ class MainMenuWindow(MainMenuSignals):
 
         self.setFocus()
 
-    def update_gradient(self, x, y) -> None:
-        start = QtCore.QPointF(float(x), float(y))
-        f_stop = QtCore.QPointF(float(self.width() - x),
-                                float(self.height() - y))
+    def update_gradient(self) -> None:
+        self.g_angle += self.g_angle_step
+        deg_to_rad: float = 0.01745329
+        start = QtCore.QPointF(
+            (0.5 + 0.5 * cos(self.g_angle * deg_to_rad)) * self.width(),
+            (0.5 + 0.5 * sin(self.g_angle * deg_to_rad)) * self.height())
+        f_stop = QtCore.QPointF(
+            (0.5 + 0.5 * cos((self.g_angle + 180) * deg_to_rad)) * self.width(),
+           (0.5 + 0.5 * sin((self.g_angle + 180) * deg_to_rad)) * self.height())
         self.gradient.setStart(start)
         self.gradient.setFinalStop(f_stop)
         self.update()
-
-    
-
-    """
-    Calls
-    """
-    def full_screen(self) -> None:
-        # if self.isFullScreen() != fs:
-        #     self.background_label.transition()
-        if not self.__isFullScreen:
-            self.showFullScreen()
-            self.__isFullScreen = True
-        else: 
-            self.showNormal()
-            self.__isFullScreen = False

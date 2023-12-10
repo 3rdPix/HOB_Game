@@ -2,6 +2,7 @@
     "gradient_color_1": [0, 0, 139],
     "gradient_color_2": [255, 105, 180],
     "gradient_rotation_tick": 15,
+    "rotation_step": 1,
     "window_width": 450,
     "window_heigth": 600,
     "background_image_opacity": 0.6,

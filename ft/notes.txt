@@ -1,0 +1,1 @@
+The idea here is to restructure the front end in a way that is cohesional with the rest of the program. We should have a central widget named window handler, which contains every other window instance, so that no new windows appear, it's just one with transitions.
