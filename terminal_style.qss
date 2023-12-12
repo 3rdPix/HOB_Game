@@ -1,0 +1,13 @@
+QPlainTextEdit#Screen {
+    font-family: 'Consolas';
+    font-size: 14px;
+    background-color: black;
+    color: green;
+}
+QLineEdit#Input {
+    font-family: 'Consolas';
+    font-size: 14px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+}
