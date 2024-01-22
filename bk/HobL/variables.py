@@ -81,13 +81,13 @@ Variable types
 
 class HobLGhostAny:
 
-    def __init__(self, name: HobLVariableName[str]) -> None:
+    def __init__(self, name: HobLVariableName) -> None:
         self.name = name
 
 
 class HobLGhostEvent:
 
-    def __init__(self, name: HobLVariableName[str]) -> None:
+    def __init__(self, name: HobLVariableName) -> None:
         self.name = name
 
 
@@ -107,7 +107,7 @@ class HobLVar(abc.ABC):
     deletionEvent:  pyqtSignal = pyqtSignal(name='deletionEvent')
     syncrodEvent:   pyqtSignal = pyqtSignal(name='syncrodEvent')
     dsynrcodEvent:  pyqtSignal = pyqtSignal(name='dsyncrodEvent')
-    name: HobLVariableName[str]
+    name: HobLVariableName
 
     def syncro(self) -> None: self.syncrodEvent.emit()
     def dsyncrod(self) -> None: self.dsynrcodEvent.emit()
@@ -121,13 +121,13 @@ class HobLNumberVariableStructure(HobLVar):
 
 class HobLNumberVariable(HobLNumberVariableStructure):
 
-    def __init__(self, name: HobLVariableName[str],
-                 value: HobLNumber[int|float|str]) -> None:
+    def __init__(self, name: HobLVariableName,
+                 value: HobLNumber) -> None:
         super().__init__()
         self.name = name
         self.value = value
 
-    def __modify(self, new_value: HobLNumber[int|float|str]) -> None:
+    def __modify(self, new_value: HobLNumber) -> None:
         """This method should only be called from OOP of this variable"""
         if not new_value != self.value: return
         self.alterEvent.emit()
@@ -139,7 +139,7 @@ class HobLNumberVariable(HobLNumberVariableStructure):
 class HobLNumberOOP(HobLNumberVariableStructure):
 
     def __init__(self, origin: HobLNumberVariable,
-                 name: HobLVariableName[str]) -> None:
+                 name: HobLVariableName) -> None:
         self.origin = origin
         self.name = name
         self.setHobLProperties()
@@ -177,7 +177,7 @@ class HobLStringVariableStructure(HobLVar):
 
 class HobLStringVariable(HobLStringVariableStructure):
 
-    def __init__(self, name: HobLVariableName[str], value: str) -> None:
+    def __init__(self, name: HobLVariableName, value: str) -> None:
         super().__init__()
         self.name = name
         self.value = value
@@ -204,7 +204,7 @@ class HobLStringVariable(HobLStringVariableStructure):
 class HobLStringOOP(HobLStringVariableStructure):
 
     def __init__(self, origin: HobLStringVariable,
-                 name: HobLVariableName[str]) -> None:
+                 name: HobLVariableName) -> None:
         super().__init__()
         self.origin = origin
         self.name = name
